@@ -67,9 +67,11 @@
               <input type="file" id="templateFile" name="templateFile" accept=".docx" class="ms-TextField-field" />
             </li>
             <li class="ms-ListItem">
-              <label for="attachments" class="ms-Label ms-ListItem-primaryText">Select a attachment files:</label>
+              <label for="attachments" class="ms-Label ms-ListItem-primaryText">Select attachment files:</label>
               <input type="file" id="attachments" name="attachments" multiple class="ms-TextField-field" />
-              <ul class="ms-List" id="attachmentsList"></ul>
+              <div class="ms-Grid-row">
+                <div class="ms-Grid-col ms-sm12"><ul class="ms-List" id="attachmentsList"></ul></div>
+              </div>
             </li>
           </ul>
         </div>
