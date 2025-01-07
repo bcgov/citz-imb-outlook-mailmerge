@@ -1,38 +1,130 @@
 <!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
 <!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Outlook Mail Merge Add-in</title>
 
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
 
     <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
-    <link rel="stylesheet" href="https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/office-ui-fabric-core/11.1.0/css/fabric.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.min.css"
+    />
+    <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
 
     <!-- Template styles -->
     <link href="taskpane.css" rel="stylesheet" type="text/css" />
-</head>
+  </head>
 
-<body class="ms-font-m ms-welcome ms-Fabric">
-    <header class="ms-welcome__header ms-bgColor-neutralLighter">
-        <img width="90" height="90" src="../../appPackage/assets/logo-filled.png" alt="Contoso" title="Contoso" />
-        <h1 class="ms-font-su">Welcome</h1>
-    </header>
+  <body class="ms-font-m ms-welcome ms-Fabric">
     <section id="sideload-msg" class="ms-welcome__main">
-        <h2 class="ms-font-xl">Please <a target="_blank" rel="noopener noreferrer" href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing">sideload</a> your add-in to see app body.</h2>
+      <h2 class="ms-font-xl">
+        Please
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing"
+          >sideload</a
+        >
+        your add-in to see app body.
+      </h2>
     </section>
-    <main id="app-body">
-        <h2 class="ms-font-xl"> Hello There </h2>
-
-
+    <main id="app-body" class="ms-Grid">
+      <div class="ms-Grid-row">
+        <div class="ms-Grid-col ms-sm12">
+          <h1 class="ms-font-xxl">Outlook Mail Merge Add-in</h1>
+          <p class="ms-font-m">
+            This add-in allows you to send personalized emails to a list of contacts using a template. You can also
+            attach files to the emails.
+          </p>
+          <p class="ms-font-m">
+            To get started, select a contacts file, a template file, and any other attachments you want to include. Then
+            click the "Run Mail Merge" button.
+          </p>
+        </div>
+      </div>
+      <div class="ms-Grid-row">
+        <div class="ms-Grid-col ms-sm12">
+          <h2 class="ms-font-l">Select Files</h2>
+          <ul class="ms-List">
+            <li class="ms-ListItem">
+              <label for="contactsFile" class="ms-Label ms-ListItem-primaryText">Select a contacts file:</label>
+              <input type="file" id="contactsFile" name="contactsFile" accept=".xlsx" class="ms-TextField-field" />
+            </li>
+            <li class="ms-ListItem">
+              <label for="templateFile" class="ms-Label ms-ListItem-primaryText">Select a template file:</label>
+              <input type="file" id="templateFile" name="templateFile" accept=".docx" class="ms-TextField-field" />
+            </li>
+            <li class="ms-ListItem">
+              <label for="attachments" class="ms-Label ms-ListItem-primaryText">Select a attachment files:</label>
+              <input type="file" id="attachments" name="attachments" multiple class="ms-TextField-field" />
+              <ul class="ms-List" id="attachmentsList"></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="ms-Grid-row">
+        <div class="ms-Grid-col ms-sm12">
+          <h2 class="ms-font-l">Sending Options</h2>
+          <p class="ms-font-m">Choose whether to send emails automatically or manually.</p>
+          <p class="ms-font-m">
+            If you choose automatic, the emails will be sent immediately after the mail merge is complete. If you choose
+            manual, you will have the opportunity to review the emails before they are sent.
+          </p>
+          <div class="ms-Toggle ms-Toggle--textLeft">
+            <span class="ms-Toggle-description">Send emails automatically or manually</span>
+            <input type="checkbox" id="send-toggle" class="ms-Toggle-input" />
+            <label for="send-toggle" class="ms-Toggle-field" tabindex="0">
+              <span class="ms-Label ms-Label--off">Manual Send</span>
+              <span class="ms-Label ms-Label--on">Automatic Send</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="ms-Grid-row">
+        <div class="ms-Grid-col ms-sm12">
+          <h2 class="ms-font-l">Run Mail Merge</h2>
+          <p class="ms-font-m">
+            Click the button below to run the mail merge. It is disabled until you have selected a contacts file and a
+            template file.
+          </p>
+          <div id="emailPreview" class="ms-TextField ms-TextField--multiline"></div>
+          <button class="ms-Button ms-Button--primary is-disabled" id="runMailMerge">
+            <span class="ms-Button-label">Run Mail Merge</span>
+          </button>
+        </div>
+      </div>
     </main>
-</body>
-
+    <script type="text/javascript">
+      var ListElements = document.querySelectorAll(".ms-List");
+      for (var i = 0; i < ListElements.length; i++) {
+        new fabric["List"](ListElements[i]);
+      }
+      var ListItemElements = document.querySelectorAll(".ms-ListItem");
+      for (var i = 0; i < ListItemElements.length; i++) {
+        new fabric["ListItem"](ListItemElements[i]);
+      }
+      var ToggleElements = document.querySelectorAll(".ms-Toggle");
+      for (var i = 0; i < ToggleElements.length; i++) {
+        new fabric["Toggle"](ToggleElements[i]);
+      }
+      var ButtonElements = document.querySelectorAll(".ms-Button");
+      for (var i = 0; i < ButtonElements.length; i++) {
+        new fabric["Button"](ButtonElements[i], function () {
+          // Insert Event Here
+        });
+      }
+    </script>
+  </body>
 </html>

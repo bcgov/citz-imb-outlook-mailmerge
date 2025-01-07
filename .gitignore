@@ -6,3 +6,6 @@ node_modules/
 
 # Sample files
 sampleDocs/
+
+# other
+package-lock.json
