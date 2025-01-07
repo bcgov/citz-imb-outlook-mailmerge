@@ -8,4 +8,4 @@ node_modules/
 sampleDocs/
 
 # other
-# package-lock.json
+package-lock.json
