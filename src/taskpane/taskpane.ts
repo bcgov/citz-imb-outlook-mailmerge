@@ -5,6 +5,8 @@
 
 // eslint-disable-next-line no-redeclare
 /* global document, Office */
+import runMailMerge from "./mailMerge";
+
 let contactsFile: File;
 let templateFile: File;
 let attachmentFiles: FileList;
@@ -16,7 +18,8 @@ Office.onReady((info) => {
     document.getElementById("contactsFile")!.addEventListener("change", handleContacts, false);
     document.getElementById("templateFile")!.addEventListener("change", handleTemplate, false);
     document.getElementById("attachments")!.addEventListener("change", handleAttachments, false);
-    document.getElementById("attachments")?.addEventListener("change", handleAttachments, false);
+    document.getElementById("runMailMerge")!.onclick = handleMailMerge;
+    console.log("This is the mail merge task pane for Outlook.");
   }
 });
 
@@ -32,7 +35,6 @@ function checkRequiredFiles() {
 async function handleContacts(event: Event) {
   const target = event.target as HTMLInputElement;
   contactsFile = target.files![0];
-  console.log(contactsFile);
   checkRequiredFiles();
 }
 
@@ -43,14 +45,18 @@ async function handleTemplate(event: Event) {
 }
 
 async function handleAttachments(event: Event) {
-  const attachments = (event.target as HTMLInputElement).files;
-  if (!attachments || attachments.length === 0) {
+  const attachmentFiles = (event.target as HTMLInputElement).files;
+  if (!attachmentFiles || attachmentFiles.length === 0) {
     return;
   }
 
   const attachmentElement = document.getElementById("attachmentsList");
 
-  Array.from(attachments).map((file) => {
+  Array.from(attachmentFiles).map((file) => {
     attachmentElement!.innerHTML += `<li class="listItem ms-ListItem-tertiaryText">${file.name}</li>`;
   });
+}
+
+async function handleMailMerge() {
+  runMailMerge(contactsFile, templateFile, attachmentFiles);
 }
