@@ -96,14 +96,17 @@
       </div>
       <div class="ms-Grid-row">
         <div class="ms-Grid-col ms-sm12">
-          <h2 class="ms-font-l">Run Mail Merge</h2>
+          <h2 class="ms-font-l">Start Mail Merge</h2>
           <p class="ms-font-m">
             Click the button below to run the mail merge. It is disabled until you have selected a contacts file and a
             template file.
           </p>
-          <div id="emailPreview" class="ms-TextField ms-TextField--multiline"></div>
+          <p class="ms-font-m">
+            The add-in will send an email to each contact in the contacts file using the template file. If you have
+            selected attachment files, they will be attached to the emails.
+          </p>
           <button class="ms-Button ms-Button--primary is-disabled" id="runMailMerge">
-            <span class="ms-Button-label">Run Mail Merge</span>
+            <span class="ms-Button-label">Start Mail Merge</span>
           </button>
         </div>
       </div>
