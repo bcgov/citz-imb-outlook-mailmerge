@@ -26,7 +26,7 @@ export function worksheetToJson(worksheet: ExcelJS.Worksheet): RowData[] {
   return json;
 }
 
-export async function getTemplate(templateFile: File) {
+export async function extractTemplate(templateFile: File) {
   console.info("==> getTemplate", { templateFile });
   if (!templateFile) {
     return {};
@@ -50,7 +50,7 @@ export async function getTemplate(templateFile: File) {
   return text;
 }
 
-export async function getContacts(contactsFile: File) {
+export async function extractContacts(contactsFile: File) {
   console.info("==> getContacts", { contactsFile });
   if (!contactsFile) {
     return {};
