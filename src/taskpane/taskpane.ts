@@ -5,7 +5,7 @@
 
 // eslint-disable-next-line no-redeclare
 /* global document, Office */
-import runMailMerge from "./mailMerge";
+import { runMailMerge } from "./mailMerge";
 
 let contactsFile: File;
 let templateFile: File;
@@ -26,9 +26,9 @@ Office.onReady((info) => {
 function checkRequiredFiles() {
   const mailMergeButton = document.getElementById("runMailMerge");
   if (!contactsFile || !templateFile) {
-    mailMergeButton.classList.add("is-disabled");
+    mailMergeButton?.classList.add("is-disabled");
   } else {
-    mailMergeButton.classList.remove("is-disabled");
+    mailMergeButton?.classList.remove("is-disabled");
   }
 }
 
@@ -45,14 +45,16 @@ async function handleTemplate(event: Event) {
 }
 
 async function handleAttachments(event: Event) {
-  const attachmentFiles = (event.target as HTMLInputElement).files;
-  if (!attachmentFiles || attachmentFiles.length === 0) {
+  const filesToAttach = (event.target as HTMLInputElement).files;
+  if (!filesToAttach || filesToAttach.length === 0) {
     return;
   }
 
+  attachmentFiles = filesToAttach;
+
   const attachmentElement = document.getElementById("attachmentsList");
 
-  Array.from(attachmentFiles).map((file) => {
+  Array.from(filesToAttach).map((file) => {
     attachmentElement!.innerHTML += `<li class="listItem ms-ListItem-tertiaryText">${file.name}</li>`;
   });
 }
