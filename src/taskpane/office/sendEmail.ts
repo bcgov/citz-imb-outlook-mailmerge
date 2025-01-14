@@ -1,18 +1,8 @@
 /* global Office */
 
-import { EmailKey } from "../helpers/types";
+import { SendMailOptions } from "../helpers";
 
-export async function sendEmail({
-  subject,
-  body,
-  attachmentFiles,
-  emailRecipients,
-}: {
-  subject: string;
-  body: string;
-  attachmentFiles?: FileList;
-  emailRecipients: { [key in EmailKey]?: string };
-}) {
+export async function sendEmail({ subject, body, attachmentFiles, emailRecipients }: SendMailOptions) {
   Office.context.mailbox.displayNewMessageForm({
     toRecipients: emailRecipients.To,
     ccRecipients: emailRecipients.Cc,

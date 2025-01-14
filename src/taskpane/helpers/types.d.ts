@@ -5,3 +5,10 @@ export interface RowData {
 }
 
 export type EmailKey = (typeof EMAIL_RECIPIENTS)[number];
+
+export type SendMailOptions = {
+  subject: string;
+  body: string;
+  attachmentFiles?: FileList;
+  emailRecipients: { [key in EmailKey]?: string };
+};
