@@ -19,7 +19,7 @@ Office.onReady((info) => {
     document.getElementById("templateFile")!.addEventListener("change", handleTemplate, false);
     document.getElementById("attachments")!.addEventListener("change", handleAttachments, false);
     document.getElementById("runMailMerge")!.onclick = handleMailMerge;
-    console.log("This is the mail merge task pane for Outlook.");
+    console.log("Office is ready", document);
   }
 });
 
@@ -60,5 +60,5 @@ async function handleAttachments(event: Event) {
 }
 
 async function handleMailMerge() {
-  runMailMerge(contactsFile, templateFile, attachmentFiles);
+  runMailMerge({ subject: "test email", contactsFile, templateFile, attachmentFiles });
 }
