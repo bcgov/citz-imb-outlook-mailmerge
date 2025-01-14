@@ -29,6 +29,10 @@
     "validDomains": [
         "contoso.com"
     ],
+    "webApplicationInfo": {
+        "id": "8f76e697-d6e8-4c5c-b60b-dffcb04e99ff",
+        "resource": "api://outlook-mail-merge"
+    },
     "extensions": [
         {
             "requirements": {
