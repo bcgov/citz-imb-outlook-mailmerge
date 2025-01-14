@@ -10,6 +10,7 @@ import { runMailMerge } from "./mailMerge";
 let contactsFile: File;
 let templateFile: File;
 let attachmentFiles: FileList;
+let subjectLine: string;
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.Outlook) {
@@ -18,6 +19,7 @@ Office.onReady((info) => {
     document.getElementById("contactsFile")!.addEventListener("change", handleContacts, false);
     document.getElementById("templateFile")!.addEventListener("change", handleTemplate, false);
     document.getElementById("attachments")!.addEventListener("change", handleAttachments, false);
+    document.getElementById("subjectLine")!.addEventListener("change", handleSubjectLine, false);
     document.getElementById("runMailMerge")!.onclick = handleMailMerge;
     console.log("Office is ready", document);
   }
@@ -30,6 +32,12 @@ function checkRequiredFiles() {
   } else {
     mailMergeButton?.classList.remove("is-disabled");
   }
+}
+
+async function handleSubjectLine(event: Event) {
+  const target = event.target as HTMLInputElement;
+  subjectLine = target.value;
+  console.log("subjectLine", subjectLine);
 }
 
 async function handleContacts(event: Event) {
@@ -60,5 +68,5 @@ async function handleAttachments(event: Event) {
 }
 
 async function handleMailMerge() {
-  runMailMerge({ subject: "test email", contactsFile, templateFile, attachmentFiles });
+  runMailMerge({ subjectLine, contactsFile, templateFile, attachmentFiles });
 }

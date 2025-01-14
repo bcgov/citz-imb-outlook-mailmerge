@@ -1,18 +1,18 @@
 import { extractContacts, extractTemplate, mergeBody } from "./helpers";
-import { sendEmail } from "./office/sendEmail";
+import { sendEmail } from "./ches/sendmail";
 
 export async function runMailMerge({
-  subject,
+  subjectLine,
   contactsFile,
   templateFile,
   attachmentFiles,
 }: {
-  subject: string;
+  subjectLine: string;
   contactsFile: File;
   templateFile: File;
   attachmentFiles?: FileList;
 }) {
-  console.info("==> runMailMerge", { subject, contactsFile, templateFile, attachmentFiles });
+  console.info("==> runMailMerge", { subjectLine, contactsFile, templateFile, attachmentFiles });
   const contacts = await extractContacts(contactsFile);
   const template = await extractTemplate(templateFile);
 
@@ -21,6 +21,6 @@ export async function runMailMerge({
     const { body, emailRecipients } = mergeBody(template, contact);
     console.log("body", body);
     console.log("emailDetails", emailRecipients);
-    sendEmail({ subject: "test subject", body, attachmentFiles, emailRecipients });
+    sendEmail({ subjectLine, body, attachmentFiles, emailRecipients });
   }
 }

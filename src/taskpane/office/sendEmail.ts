@@ -2,12 +2,12 @@
 
 import { SendMailOptions } from "../helpers";
 
-export async function sendEmail({ subject, body, attachmentFiles, emailRecipients }: SendMailOptions) {
+export async function sendEmail({ subjectLine, body, attachmentFiles, emailRecipients }: SendMailOptions) {
   Office.context.mailbox.displayNewMessageForm({
     toRecipients: emailRecipients.To,
     ccRecipients: emailRecipients.Cc,
     bccRecipients: emailRecipients.Bcc,
-    subject,
+    subject: subjectLine,
     body,
     attachments: attachmentFiles ? attachmentFiles : null,
   });
