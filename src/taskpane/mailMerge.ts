@@ -17,10 +17,7 @@ export async function runMailMerge({
   const template = await extractTemplate(templateFile);
 
   for (const contact of contacts) {
-    console.log("contact", contact);
     const { body, emailRecipients } = mergeBody(template, contact);
-    console.log("body", body);
-    console.log("emailDetails", emailRecipients);
     sendEmail({ subjectLine, body, attachmentFiles, emailRecipients });
   }
 }

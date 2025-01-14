@@ -37,7 +37,6 @@ function checkRequiredFiles() {
 async function handleSubjectLine(event: Event) {
   const target = event.target as HTMLInputElement;
   subjectLine = target.value;
-  console.log("subjectLine", subjectLine);
 }
 
 async function handleContacts(event: Event) {
