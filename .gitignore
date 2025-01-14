@@ -9,3 +9,4 @@ sampleDocs/
 
 # other
 package-lock.json
+.env
