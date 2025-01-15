@@ -18,17 +18,22 @@
     "lint": "office-addin-lint check",
     "lint:fix": "office-addin-lint fix",
     "prettier": "office-addin-lint prettier",
+    "proxy": "node --env-file .env ./src/TaskPane/ches/proxy.js",
     "signin": "office-addin-dev-settings m365-account login",
     "signout": "office-addin-dev-settings m365-account logout",
     "start": "office-addin-debugging start appPackage/manifest.json",
+    "start:mailmerge": "npm run start & npm run proxy",
     "stop": "office-addin-debugging stop appPackage/manifest.json",
     "validate": "office-addin-manifest validate appPackage/manifest.json",
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
     "core-js": "^3.36.0",
+    "dotenv": "16.4.7",
     "exceljs": "4.4.0",
+    "express": "4.21.2",
     "mammoth": "1.9.0",
+    "node-fetch": "3.3.2",
     "regenerator-runtime": "^0.14.1"
   },
   "devDependencies": {
