@@ -11,6 +11,7 @@ let contactsFile: File;
 let templateFile: File;
 let attachmentFiles: FileList;
 let subjectLine: string;
+let userEmail: string;
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.Outlook) {
@@ -20,18 +21,26 @@ Office.onReady((info) => {
     document.getElementById("templateFile")!.addEventListener("change", handleTemplate, false);
     document.getElementById("attachments")!.addEventListener("change", handleAttachments, false);
     document.getElementById("subjectLine")!.addEventListener("change", handleSubjectLine, false);
+    document.getElementById("userEmail")!.addEventListener("change", handleUserEmail, false);
     document.getElementById("runMailMerge")!.onclick = handleMailMerge;
+
     console.log("Office is ready", document);
   }
 });
 
 function checkRequiredFiles() {
   const mailMergeButton = document.getElementById("runMailMerge");
-  if (!contactsFile || !templateFile || !subjectLine) {
+  if (!contactsFile || !templateFile || !subjectLine || !userEmail) {
     mailMergeButton?.classList.add("is-disabled");
   } else {
     mailMergeButton?.classList.remove("is-disabled");
   }
+}
+
+async function handleUserEmail(event: Event) {
+  const target = event.target as HTMLInputElement;
+  userEmail = target.value;
+  checkRequiredFiles();
 }
 
 async function handleSubjectLine(event: Event) {
@@ -68,5 +77,5 @@ async function handleAttachments(event: Event) {
 }
 
 async function handleMailMerge() {
-  runMailMerge({ subjectLine, contactsFile, templateFile, attachmentFiles });
+  runMailMerge({ subjectLine, contactsFile, templateFile, attachmentFiles, userEmail });
 }

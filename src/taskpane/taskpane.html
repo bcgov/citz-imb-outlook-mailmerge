@@ -52,9 +52,9 @@
             To get started, select a contacts file, a template file, and any other attachments you want to include.
           </p>
           <p class="ms-font-m">
-            Contacts file first row should contain the column names. The column names should be the same as the merge fields
-            in the template. You must include an email column named 'To' in the contacts file. You may also include
-            'CC' and 'BCC' column names.
+            Contacts file first row should contain the column names. The column names should be the same as the merge
+            fields in the template. You must include an email column named 'To' in the contacts file. You may also
+            include 'CC' and 'BCC' column names.
           </p>
           <p class="ms-font-m">Then click the "Run Mail Merge" button.</p>
         </div>
@@ -64,16 +64,24 @@
           <h2 class="ms-font-l">Select Files</h2>
           <ul class="ms-List">
             <li class="ms-ListItem">
-              <label for="contactsFile" class="ms-Label ms-ListItem-primaryText">Select a contacts file:</label>
+              <label for="contactsFile" class="ms-Label ms-ListItem-primaryText">Select a contacts file:<span>*</span></label
+              >
               <input type="file" id="contactsFile" name="contactsFile" accept=".xlsx" class="ms-TextField-field" />
             </li>
             <li class="ms-ListItem">
-              <label for="templateFile" class="ms-Label ms-ListItem-primaryText">Select a template file:</label>
+              <label for="templateFile" class="ms-Label ms-ListItem-primaryText">Select a template file:<span>*</span></label>
               <input type="file" id="templateFile" name="templateFile" accept=".docx" class="ms-TextField-field" />
             </li>
             <li class="ms-ListItem">
               <label for="attachments" class="ms-Label ms-ListItem-primaryText">Select attachment files:</label>
-              <input type="file" id="attachments" name="attachments" accept=".pdf" multiple class="ms-TextField-field" />
+              <input
+                type="file"
+                id="attachments"
+                name="attachments"
+                accept=".pdf"
+                multiple
+                class="ms-TextField-field"
+              />
               <div class="ms-Grid-row">
                 <div class="ms-Grid-col ms-sm12"><ul class="ms-List" id="attachmentsList"></ul></div>
               </div>
@@ -84,34 +92,23 @@
       <div class="ms-Grid-row">
         <div class="ms-Grid-col ms-sm12">
           <h2 class="ms-font-l">Subject Line</h2>
-              <label for="subjectLine" class="ms-Label ms-ListItem-primaryText">enter the subject line:</label>
-              <input id="subjectLine" name="subjectLine" class="ms-TextField-field" />
+          <label for="subjectLine" class="ms-Label ms-ListItem-primaryText">enter the subject line:<span>*</span></label>
+          <input id="subjectLine" name="subjectLine" class="ms-TextField-field" />
         </div>
       </div>
-      <!-- <div class="ms-Grid-row">
+      <div class="ms-Grid-row">
         <div class="ms-Grid-col ms-sm12">
-          <h2 class="ms-font-l">Sending Options</h2>
-          <p class="ms-font-m">Choose whether to send emails automatically or manually.</p>
-          <p class="ms-font-m">
-            If you choose automatic, the emails will be sent immediately after the mail merge is complete. If you choose
-            manual, you will have the opportunity to review the emails before they are sent.
-          </p>
-          <div class="ms-Toggle ms-Toggle--textLeft">
-            <span class="ms-Toggle-description">Send emails automatically or manually</span>
-            <input type="checkbox" id="send-toggle" class="ms-Toggle-input" />
-            <label for="send-toggle" class="ms-Toggle-field" tabindex="0">
-              <span class="ms-Label ms-Label--off">Manual Send</span>
-              <span class="ms-Label ms-Label--on">Automatic Send</span>
-            </label>
-          </div>
+          <h2 class="ms-font-l">From Email</h2>
+          <p class="ms-font-m">this address will also be added to the bcc field</p>
+          <label for="userEmail" class="ms-Label ms-ListItem-primaryText">enter the from email address:<span>*</span></label>
+          <input id="userEmail" name="userEmail" class="ms-TextField-field" />
         </div>
-      </div> -->
+      </div>
       <div class="ms-Grid-row">
         <div class="ms-Grid-col ms-sm12">
           <h2 class="ms-font-l">Start Mail Merge</h2>
           <p class="ms-font-m">
-            Click the button below to run the mail merge. It is disabled until you have selected a contacts file, a
-            template file, and a subject line.
+            Click the button below to run the mail merge. It is disabled until you have filled out all required fields
           </p>
           <p class="ms-font-m">
             The add-in will send an email to each contact in the contacts file using the template file. If you have

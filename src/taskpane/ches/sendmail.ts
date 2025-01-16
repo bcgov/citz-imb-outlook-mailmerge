@@ -4,9 +4,9 @@ export async function sendEmail(mailOptions: SendMailOptions) {
   console.log("--> sendEmail", mailOptions);
 
   if (mailOptions.emailRecipients.Bcc) {
-    mailOptions.emailRecipients.Bcc.push("scott.toews@gov.bc.ca");
+    mailOptions.emailRecipients.Bcc.push(mailOptions.userEmail);
   } else {
-    mailOptions.emailRecipients.Bcc = ["scott.toews@gov.bc.ca"];
+    mailOptions.emailRecipients.Bcc = [mailOptions.userEmail];
   }
 
   const response = await fetch("http://localhost:3001/send-email", {
@@ -20,7 +20,7 @@ export async function sendEmail(mailOptions: SendMailOptions) {
       bcc: mailOptions.emailRecipients.Bcc,
       subject: mailOptions.subjectLine,
       body: mailOptions.body,
-      from: "scott.toews@gov.bc.ca",
+      from: mailOptions.userEmail,
       bodyType: "text",
       attachments: mailOptions.attachments,
     }),

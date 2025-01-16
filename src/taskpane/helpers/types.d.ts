@@ -18,4 +18,5 @@ export type SendMailOptions = {
   body: string;
   attachments?: Attachment[];
   emailRecipients: { [key in EmailKey]?: string[] };
+  userEmail: string;
 };

@@ -6,13 +6,15 @@ export async function runMailMerge({
   contactsFile,
   templateFile,
   attachmentFiles,
+  userEmail,
 }: {
   subjectLine: string;
   contactsFile: File;
   templateFile: File;
   attachmentFiles?: FileList;
+  userEmail: string;
 }) {
-  console.info("==> runMailMerge", { subjectLine, contactsFile, templateFile, attachmentFiles });
+  console.info("==> runMailMerge", { subjectLine, contactsFile, templateFile, attachmentFiles, userEmail });
   const contacts = await extractContacts(contactsFile);
   const template = await extractTemplate(templateFile);
   let attachments = [];
@@ -31,6 +33,6 @@ export async function runMailMerge({
 
   for (const contact of contacts) {
     const { body, emailRecipients } = mergeBody(template, contact);
-    sendEmail({ subjectLine, body, attachments, emailRecipients });
+    sendEmail({ subjectLine, body, attachments, emailRecipients, userEmail });
   }
 }
