@@ -33,6 +33,16 @@ A second cmd window will open and a new instance of outlook will open.  You can 
 11. Enter the from email address.  This is the email address that will be used as the reply email.  It will also be appended to the 'Bcc' field.
 12. Click 'Start Mail Merge' to start the mail merge process.
 
+## Stopping the add-in
+1. On the first command window, press `Ctrl+C` to stop the add-in.
+2. run the following command to stop the add-in:
+```bash
+npm run stop
+```
+The second cmd window will close.
+3. exit the outlook instance that was opened.
+4. You can now close the first cmd window.
+
 ## Notes
 ### Contacts File
 - must be a .xlsx file
