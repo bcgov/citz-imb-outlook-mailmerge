@@ -27,7 +27,7 @@ Office.onReady((info) => {
 
 function checkRequiredFiles() {
   const mailMergeButton = document.getElementById("runMailMerge");
-  if (!contactsFile || !templateFile) {
+  if (!contactsFile || !templateFile || !subjectLine) {
     mailMergeButton?.classList.add("is-disabled");
   } else {
     mailMergeButton?.classList.remove("is-disabled");
@@ -37,6 +37,7 @@ function checkRequiredFiles() {
 async function handleSubjectLine(event: Event) {
   const target = event.target as HTMLInputElement;
   subjectLine = target.value;
+  checkRequiredFiles();
 }
 
 async function handleContacts(event: Event) {
