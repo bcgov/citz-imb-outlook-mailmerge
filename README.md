@@ -34,7 +34,7 @@ A second cmd window will open and a new instance of outlook will open.  You can 
 12. Click 'Start Mail Merge' to start the mail merge process.
 
 ## Stopping the add-in
-1. On the first command window, press `Ctrl+C` to stop the add-in.
+1. On the first command window, press `Ctrl+C` to stop the proxy server.
 2. run the following command to stop the add-in:
 ```bash
 npm run stop
