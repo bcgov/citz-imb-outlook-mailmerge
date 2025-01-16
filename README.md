@@ -1,7 +1,7 @@
 This is a down and dirty way to side-load an add-in to outlook to run a mail merge.  This is not a production ready solution, but quick work-around until a production solution is available.
 
 ## Prerequisites
-- you must install node.js version 20.6 or later on your computer.  You can download it from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
+- you must install node.js version 22.12 or later on your computer.  You can download it from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
 ## Setup
 1. In the GitHub repository, click on the 'Code' button and download the zip file.
@@ -24,6 +24,10 @@ npm run start:mailmerge
 You may be prompted to install a certificate.  Click 'Yes' to install the certificate.  This will allow the add-in to run in outlook.  In future sessions you may be prompted to delete the expired certificate.  You can safely delete the certificate.  It will then prompt to install the certificate again.
 
 You may also be prompted to login.  do so.
+
+you may be asked about edge loop, answer y.
+
+you may be prompted to allow access through the firewall, answer yes.
 
 A second cmd window will open and a new instance of outlook will open.  You can ignore the second cmd window, but don't close it.  It will take a few minutes for outlook to load.  Probably long enough to get a coffee, but not to make a pot of coffee.
 
