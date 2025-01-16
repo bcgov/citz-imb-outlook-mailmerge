@@ -1,7 +1,7 @@
 This is a down and dirty way to side-load an add-in to outlook to run a mail merge.  This is not a production ready solution, but quick work-around until a production solution is available.
 
 ## Prerequisites
-- you must install node.js on your computer.  You can download it from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
+- you must install node.js version 20.6 or later on your computer.  You can download it from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
 ## Setup
 1. In the GitHub repository, click on the 'Code' button and download the zip file.
@@ -11,6 +11,8 @@ This is a down and dirty way to side-load an add-in to outlook to run a mail mer
 ```bash
 npm install
 ```
+5. copy the .env.sample file to create a .env file
+6. request the values to apply from CITZ IMB Developer
 
 ## Running the add-in
 1. open a command prompt
@@ -23,7 +25,7 @@ You may be prompted to install a certificate.  Click 'Yes' to install the certif
 
 A second cmd window will open and a new instance of outlook will open.  You can ignore the second cmd window, but don't close it.  It will take a few minutes for outlook to load.  Probably long enough to get a coffee, but not to make a pot of coffee.
 
-4. Once it is loaded, you can click on an email (any email) and the 'Mail Merge' group will become enabled.
+4. Once it is loaded, click on an email (any email) and the 'Mail Merge' group will become enabled.
 5. Click on the 'Show Mail Merge Pane' button to start the mail merge process.
 6. You will be prompted to debug the webview.  Click 'OK' to continue. A new pane will open.
 7. Select your contacts file.  It must be a .xlsx file.  The first row must contain the column headers. There must be a column named 'To' that contains the email addresses.
@@ -34,12 +36,13 @@ A second cmd window will open and a new instance of outlook will open.  You can 
 12. Click 'Start Mail Merge' to start the mail merge process.
 
 ## Stopping the add-in
-1. On the first command window, press `Ctrl+C` to stop the add-in.
+1. On the first command window, press `Ctrl+C` to stop the proxy server.
 2. run the following command to stop the add-in:
 ```bash
 npm run stop
 ```
 The second cmd window will close.
+
 3. exit the outlook instance that was opened.
 4. You can now close the first cmd window.
 
