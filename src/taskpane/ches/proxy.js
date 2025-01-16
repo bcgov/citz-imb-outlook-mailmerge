@@ -1,4 +1,5 @@
 import express, { json } from "express";
+import rateLimit from "express-rate-limit";
 import fetch from "node-fetch";
 
 /* global process */
@@ -6,7 +7,7 @@ import fetch from "node-fetch";
 const app = express();
 const port = 3001;
 
-app.use(json());
+app.use(json({ limit: "50mb" }));
 
 // Enable CORS for all routes
 app.use((req, res, next) => {
@@ -15,6 +16,15 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
 });
+
+app.use(
+  rateLimit({
+    windowMs: 2 * 1000, // 2 seconds
+    max: 100,
+    standardHeaders: true,
+    legacyHeaders: false,
+  })
+);
 
 app.post("/send-email", async (req, res) => {
   try {

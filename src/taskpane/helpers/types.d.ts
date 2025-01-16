@@ -6,9 +6,16 @@ export interface RowData {
 
 export type EmailKey = (typeof EMAIL_RECIPIENTS)[number];
 
+type Attachment = {
+  content: string;
+  contentType: string;
+  filename: string;
+  encoding: string;
+};
+
 export type SendMailOptions = {
   subjectLine: string;
   body: string;
-  attachmentFiles?: FileList;
-  emailRecipients: { [key in EmailKey]?: string };
+  attachments?: Attachment[];
+  emailRecipients: { [key in EmailKey]?: string[] };
 };
