@@ -23,6 +23,8 @@ npm run start:mailmerge
 ```
 You may be prompted to install a certificate.  Click 'Yes' to install the certificate.  This will allow the add-in to run in outlook.  In future sessions you may be prompted to delete the expired certificate.  You can safely delete the certificate.  It will then prompt to install the certificate again.
 
+You may also be prompted to login.  do so.
+
 A second cmd window will open and a new instance of outlook will open.  You can ignore the second cmd window, but don't close it.  It will take a few minutes for outlook to load.  Probably long enough to get a coffee, but not to make a pot of coffee.
 
 4. Once it is loaded, click on an email (any email) and the 'Mail Merge' group will become enabled.
