@@ -40,6 +40,7 @@ A second cmd window will open and a new instance of outlook will open.  You can 
 npm run stop
 ```
 The second cmd window will close.
+
 3. exit the outlook instance that was opened.
 4. You can now close the first cmd window.
 
