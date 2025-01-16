@@ -32,4 +32,5 @@ export async function sendEmail(mailOptions: SendMailOptions) {
     console.log("Email sent successfully");
     console.log(await response.json());
   }
+  return response;
 }

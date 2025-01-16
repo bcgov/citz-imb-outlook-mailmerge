@@ -64,12 +64,15 @@
           <h2 class="ms-font-l">Select Files</h2>
           <ul class="ms-List">
             <li class="ms-ListItem">
-              <label for="contactsFile" class="ms-Label ms-ListItem-primaryText">Select a contacts file:<span>*</span></label
+              <label for="contactsFile" class="ms-Label ms-ListItem-primaryText"
+                >Select a contacts file:<span>*</span></label
               >
               <input type="file" id="contactsFile" name="contactsFile" accept=".xlsx" class="ms-TextField-field" />
             </li>
             <li class="ms-ListItem">
-              <label for="templateFile" class="ms-Label ms-ListItem-primaryText">Select a template file:<span>*</span></label>
+              <label for="templateFile" class="ms-Label ms-ListItem-primaryText"
+                >Select a template file:<span>*</span></label
+              >
               <input type="file" id="templateFile" name="templateFile" accept=".docx" class="ms-TextField-field" />
             </li>
             <li class="ms-ListItem">
@@ -92,16 +95,20 @@
       <div class="ms-Grid-row">
         <div class="ms-Grid-col ms-sm12">
           <h2 class="ms-font-l">Subject Line</h2>
-          <label for="subjectLine" class="ms-Label ms-ListItem-primaryText">enter the subject line:<span>*</span></label>
-          <input id="subjectLine" name="subjectLine" class="ms-TextField-field" />
+          <label for="subjectLine" class="ms-Label ms-ListItem-primaryText"
+            >enter the subject line:<span>*</span></label
+          >
+          <input id="subjectLine" name="subjectLine" class="ms-TextField-field" type="text" />
         </div>
       </div>
       <div class="ms-Grid-row">
         <div class="ms-Grid-col ms-sm12">
           <h2 class="ms-font-l">From Email</h2>
           <p class="ms-font-m">this address will also be added to the bcc field</p>
-          <label for="userEmail" class="ms-Label ms-ListItem-primaryText">enter the from email address:<span>*</span></label>
-          <input id="userEmail" name="userEmail" class="ms-TextField-field" />
+          <label for="userEmail" class="ms-Label ms-ListItem-primaryText"
+            >enter the from email address:<span>*</span></label
+          >
+          <input id="userEmail" name="userEmail" class="ms-TextField-field" type="email" />
         </div>
       </div>
       <div class="ms-Grid-row">
@@ -117,6 +124,9 @@
           <button class="ms-Button ms-Button--primary is-disabled" id="runMailMerge">
             <span class="ms-Button-label">Start Mail Merge</span>
           </button>
+        </div>
+        <div class="ms-Grid-row">
+          <div class="ms-Grid-col ms-sm12" id="successNotification"></div>
         </div>
       </div>
     </main>

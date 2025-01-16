@@ -7,11 +7,11 @@
 /* global document, Office */
 import { runMailMerge } from "./mailMerge";
 
-let contactsFile: File;
-let templateFile: File;
-let attachmentFiles: FileList;
-let subjectLine: string;
-let userEmail: string;
+let contactsFile: File | undefined;
+let templateFile: File | undefined;
+let attachmentFiles: FileList | undefined;
+let subjectLine: string | undefined;
+let userEmail: string | undefined;
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.Outlook) {
@@ -28,7 +28,12 @@ Office.onReady((info) => {
   }
 });
 
+function clearSuccessNotification() {
+  document.getElementById("successNotification")!.innerText = "";
+}
+
 function checkRequiredFiles() {
+  clearSuccessNotification();
   const mailMergeButton = document.getElementById("runMailMerge");
   if (!contactsFile || !templateFile || !subjectLine || !userEmail) {
     mailMergeButton?.classList.add("is-disabled");
@@ -76,6 +81,45 @@ async function handleAttachments(event: Event) {
   });
 }
 
+function clearForm() {
+  const fileInputs = document.querySelectorAll("input[type='file']");
+  fileInputs.forEach((input) => {
+    const fileInput = input as HTMLInputElement;
+    fileInput.value = "";
+  });
+
+  const textInputs = document.querySelectorAll("input[type='text']");
+  textInputs.forEach((input) => {
+    const textInput = input as HTMLInputElement;
+    textInput.value = "";
+  });
+
+  const emailInputs = document.querySelectorAll("input[type='email']");
+  emailInputs.forEach((input) => {
+    const emailInput = input as HTMLInputElement;
+    emailInput.value = "";
+  });
+
+  const attachmentElement = document.getElementById("attachmentsList");
+  attachmentElement!.innerHTML = "";
+
+  contactsFile = undefined;
+  templateFile = undefined;
+  attachmentFiles = undefined;
+  subjectLine = undefined;
+  userEmail = undefined;
+
+  checkRequiredFiles();
+}
+
 async function handleMailMerge() {
-  runMailMerge({ subjectLine, contactsFile, templateFile, attachmentFiles, userEmail });
+  document.getElementById("runMailMerge")!.classList.add("is-disabled");
+  if (!contactsFile || !templateFile || !subjectLine || !userEmail) {
+    console.error("Missing required fields", { contactsFile, templateFile, subjectLine, userEmail });
+    return;
+  }
+  const response = await runMailMerge({ subjectLine, contactsFile, templateFile, attachmentFiles, userEmail });
+  console.log("Mail merge complete", response);
+  clearForm();
+  document.getElementById("successNotification")!.innerText = "Mail merge complete!";
 }

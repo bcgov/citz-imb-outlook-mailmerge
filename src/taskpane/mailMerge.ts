@@ -18,6 +18,7 @@ export async function runMailMerge({
   const contacts = await extractContacts(contactsFile);
   const template = await extractTemplate(templateFile);
   let attachments = [];
+  let responses = [];
 
   if (attachmentFiles) {
     for (let i = 0; i < attachmentFiles.length; i++) {
@@ -33,6 +34,8 @@ export async function runMailMerge({
 
   for (const contact of contacts) {
     const { body, emailRecipients } = mergeBody(template, contact);
-    sendEmail({ subjectLine, body, attachments, emailRecipients, userEmail });
+    const response = await sendEmail({ subjectLine, body, attachments, emailRecipients, userEmail });
+    responses.push(response);
   }
+  return responses;
 }
