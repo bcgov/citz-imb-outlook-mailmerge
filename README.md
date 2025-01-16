@@ -11,6 +11,8 @@ This is a down and dirty way to side-load an add-in to outlook to run a mail mer
 ```bash
 npm install
 ```
+5. copy the .env.sample file to create a .env file
+6. request the values to apply from CITZ IMB Developer
 
 ## Running the add-in
 1. open a command prompt
